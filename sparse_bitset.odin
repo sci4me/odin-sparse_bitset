@@ -15,7 +15,7 @@ SparseBitSet :: struct(N: u64, T: typeid) where intrinsics.type_is_numeric(T) {
 	n: T
 }
 
-contains :: proc(using s: ^SparseBitSet($N, $T), x: T) -> bool {
+contains :: inline proc(using s: ^SparseBitSet($N, $T), x: T) -> bool {
 	assert(x >= 0, "SparseBitSet only works with positive integers");
 	return u64(x) < N && sparse[x] < n && dense[sparse[x]] == x;
 }
