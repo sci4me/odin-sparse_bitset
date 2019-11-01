@@ -2,6 +2,8 @@
 
 This is an efficient sparse bitset implementation (based on "An Efficient Representation for Sparse Sets"; http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.30.7319&rep=rep1&type=pdf)
 
+For an alternate explanation: https://research.swtch.com/sparse
+
 A `SparseBitSet` structure is provided, representing a sparse set that can store `[0..N]` elements whose values must be `<N`.
 
 ## Example Code:
