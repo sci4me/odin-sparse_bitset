@@ -12,10 +12,10 @@ import "intrinsics"
 SparseBitSet :: struct(N: u64, T: typeid) where intrinsics.type_is_numeric(T) {
 	dense: [N]T,
 	sparse: [N]T,
-	n: T
+	n: T,
 }
 
-contains :: inline proc(using s: ^SparseBitSet($N, $T), x: T) -> bool {
+contains :: #force_inline proc(using s: ^SparseBitSet($N, $T), x: T) -> bool {
 	assert(x >= 0, "SparseBitSet only works with positive integers");
 	return u64(x) < N && sparse[x] < n && dense[sparse[x]] == x;
 }
@@ -57,11 +57,11 @@ ordered_remove :: proc(using s: ^SparseBitSet($N, $T), x: T) -> bool {
 	return true;
 }
 
-clear :: inline proc(using s: ^SparseBitSet($N, $T)) {
+clear :: #force_inline proc(using s: ^SparseBitSet($N, $T)) {
 	n = 0;
 }
 
-for_each :: inline proc(using s: ^SparseBitSet($N, $T), fn: proc(T)) {
+for_each :: #force_inline proc(using s: ^SparseBitSet($N, $T), fn: proc(T)) {
 	for i in 0..<n {
 		fn(dense[i]);
 	}	
